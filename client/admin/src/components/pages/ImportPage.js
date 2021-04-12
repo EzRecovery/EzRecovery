@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Manage() {
+function ImportPage() {
     return (
         <div>
-            Manage Field-Staff
+            Import Page
         </div>
     )
 }
 
-export default Manage
+export default ImportPage

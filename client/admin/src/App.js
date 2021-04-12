@@ -1,22 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Layout from "./components/dashboard/Layout";
-import Error from "./pages/error/Error";
+import { useState } from "react";
+import "./App.css";
+//import Main from "./components/main/Main";
+import Dashboard from './components/dashboard/Dashboard'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-export default function App() {
+const App = () => {
+
+  { document.title = "EzRecovery Dashboard" }
+
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/app" component={Layout} />
-        <Route exact path="/app/import" component={Layout} />
-        <Route exact path="/app/dashboard" component={Layout} />
-        <Route exact path="/app/profile" component={Layout} />
-        <Route exact path="/app/view" component={Layout} />
-        <Route path="/app/manage" component={Layout} />
-        <Route component={Error} />
-      </Switch>
-    </Router>
+    <div>
+      <Router>
+        <Switch>
+          <Route path='/app' component={Dashboard} />
+        </Switch>
+      </Router>
+    </div>
   );
+};
 
-  // #######################################################################
-}
+export default App;
