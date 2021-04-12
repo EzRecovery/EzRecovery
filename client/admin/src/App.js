@@ -1,13 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import Login from './components/login/Login';
+import { useState } from "react";
+import "./App.css";
+//import Main from "./components/main/Main";
+import Dashboard from './components/dashboard/Dashboard'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-function App() {
+const App = () => {
+
+  { document.title = "EzRecovery Dashboard" }
+
   return (
-    <div className="App">
-      <Login></Login>
+    <div>
+      <Router>
+        <Switch>
+          <Route path='/app' component={Dashboard} />
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
