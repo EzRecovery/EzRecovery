@@ -8,7 +8,7 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            employee_id: '',
+            admin_id: '',
             pass: '',
             redirect: false
         };
@@ -35,10 +35,10 @@ class Login extends Component {
         });
         const data = await result.json();
         if (data.success) {
-            this.props.setEmpname(data.name);
-            this.props.setEmpid(this.state.employee_id);
-            localStorage.setItem('emp_id', this.state.employee_id);
-            localStorage.setItem('emp_name', data.name);
+            // this.props.setEmpname(data.name);
+            // this.props.setEmpid(this.state.employee_id);
+            localStorage.setItem('admin_id', this.state.admin_id);
+            localStorage.setItem('admin_name', data.name);
             this.setState({ redirect: true });
         }
         else
@@ -71,16 +71,18 @@ class Login extends Component {
                     </div>
                     <div>
                         <form action="#" className="login">
-                            {/* <div class="field"> */}
-                            <input type="text" placeholder="Username" required />
-                            {/* </div> */}
+
+                            <input type="text" name="admin_id" placeholder="Username" required value={this.state.admin_id}
+                                onChange={this.handleChange} />
+
                             <div className="field">
-                                <input type="password" placeholder="Password" required />
+                                <input type="password" name="pass" placeholder="Password" required value={this.state.pass}
+                                    onChange={this.handleChange} />
                             </div>
 
                             <div className="signin_btn">
 
-                                <button className="ghost" id="signIn">Sign In</button>
+                                <button className="ghost" id="signIn" type="submit">Sign In</button>
 
                             </div>
                         </form>
