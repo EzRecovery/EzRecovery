@@ -31,3 +31,22 @@ CREATE TABLE AREA(
 id INT NOT NULL,
 name VARCHAR(200)  NOT NULL
 );
+
+CREATE TABLE Field_Staff(
+id int primary key, 
+name varchar(50) NOT NULL, 
+username varchar(50)NOT NULL, 
+password varchar(100) NOT NULL, 
+contact_no varchar(10) NOT NULL, 
+contact_no_1 varchar(10) NOT NULL, 
+email varchar(100) NOT NULL, 
+profile_photo varchar(200) NOT NULL
+);
+
+CREATE TABLE Location(
+area_id int NOT NULL, 
+Field_Staff_id int NOT NULL, 
+foreign key(Field_Staff_id) references Field_Staff(id) 
+ON DELETE CASCADE 
+ON UPDATE SET NULL
+);
