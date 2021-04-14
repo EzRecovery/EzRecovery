@@ -2,14 +2,17 @@ import { logDOM } from '@testing-library/dom'
 import React, { Component } from 'react'
 import '../login/Login.css'
 import logo from "../../../src/assets/logo.png"
+import Axios from 'axios';
+import cookies from 'js-cookie';
+
 class Login extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            admin_id: '',
-            pass: '',
+            username: '',
+            password: '',
             redirect: false
         };
         this.handleChange = this.handleChange.bind(this);
@@ -27,22 +30,44 @@ class Login extends Component {
     }
 
     async handleSubmit(event) {
-        event.preventDefault();
-        const result = await fetch("http://localhost:5000/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(this.state)
-        });
-        const data = await result.json();
-        if (data.success) {
-            // this.props.setEmpname(data.name);
-            // this.props.setEmpid(this.state.employee_id);
-            localStorage.setItem('admin_id', this.state.admin_id);
-            localStorage.setItem('admin_name', data.name);
-            this.setState({ redirect: true });
+        //event.preventDefault();
+        console.log("rohittt");
+        try {
+            const res = await Axios.post(
+                'http://localhost:3001/login',
+                {
+                    // method: "POST",
+                    data: { username: this.state.username, password: this.state.password },
+                }
+            );//.catch(res => console.log(res));
+
+            if (res.status === 200) {
+                // this.props.setEmpname(data.name);
+                // this.props.setEmpid(this.state.employee_id);
+                localStorage.setItem('admin_id', this.state.username);
+                // localStorage.setItem('admin_name', data.name);
+                // this.setState({ redirect: true });
+                cookies.set('admin-token', res.data.token, {
+                    expires: date,
+                });
+                alert("success full");
+            }
+        } catch (err) {
+
+            console.log(err);
+            if (err.response) {
+                console.log(err.response);
+                if (err.response.status === 401) {
+                    alert(err)
+                }
+            }
+
+
+
+
+
+
         }
-        else
-            alert(data.message);
     }
 
     render() {
@@ -70,22 +95,22 @@ class Login extends Component {
                         <h3>Sign In</h3>
                     </div>
                     <div>
-                        <form action="#" className="login">
+                        <div className="login"  >
 
-                            <input type="text" name="admin_id" placeholder="Username" required value={this.state.admin_id}
+                            <input type="text" name="username" placeholder="Username" required value={this.state.admin_id}
                                 onChange={this.handleChange} />
 
                             <div className="field">
-                                <input type="password" name="pass" placeholder="Password" required value={this.state.pass}
+                                <input type="password" name="password" placeholder="Password" required value={this.state.pass}
                                     onChange={this.handleChange} />
                             </div>
 
-                            <div className="signin_btn">
+                            {/* <div className="signin_btn"> */}
 
-                                <button className="ghost" id="signIn" type="submit">Sign In</button>
+                            <button className="ghost" id="signIn" type="submit" onClick={this.handleSubmit}>Sign In</button>
 
-                            </div>
-                        </form>
+                            {/* </div> */}
+                        </div>
                     </div>
 
                 </div>

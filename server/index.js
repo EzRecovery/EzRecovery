@@ -1,121 +1,72 @@
 const express = require('express')
-const mysql = require('mysql')
+const jwt = require('jsonwebtoken');
 const cors = require('cors')
-var bodyParser = require("body-parser");
 const app = express()
 let _router = express.Router();
 app.use(express.json())
+// app.use(cors());
 app.use(cors());
 
 
+const pg = require('pg');
+const cs = require('../server/database-confiq/config');
+const { isValidAuth, checkAuth } = require('../server/auth/auth');
+//app.use("/api", _router);
 
-//for business logic
-const AllRisk = require('./Business_logic/AllRisk');
-
-//for post method
-app.use(express.static("public"));
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-}));
-
-
-const db = mysql.createConnection({
-    // user: "root",
-    // host: "localhost",
-    // password: "jarvis",
-    // database: "internship",
-    // host: 3306,
-    host: 'remotemysql.com',
-
-    // Get the User for DB from Environment or use default
-    user: 'W9jGKSIVO9',
-
-    // Get the Password for DB from Environment or use default
-    password: 'Oy0t3OtVFu',
-
-    // Get the Database from Environment or use default
-    database: 'W9jGKSIVO9',
-
-    dateStrings: 'date',
-});
-
-
-app.use("/api", _router);
+var client = new pg.Client(cs.cs);
+client.connect();
 
 app.post('/login', (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
 
-    db.query("SELECT * FROM user WHERE username = ? and password = ? ", [username, password], (err, result) => {
-        if (err) {
-            res.send({ err: err });
+
+    const { username, password } = req.body.data;
+    console.log("come", username, password);
+    client.query("SELECT * FROM admin where username= $1 and password = $2", [username, password], (error, results) => {
+        if (error) {
+            throw error
         }
+        var user = results.rows
 
-        if (result.length > 0) {
-            res.send(result);
+        if (results.rowCount > 0) {
+            console.log(user)
+            const token = jwt.sign(
+                { id: user.id, isAdmin: true },
+                // process.env.JWT_SECRET,
+                cs.JWT_SECRET_code,
+                {
+                    expiresIn: `${1000 * 60 * 30}ms`, //30 min
+                }
+            );
+            // res.cookie('token', token, { httpOnly: true, maxAge: 60*30*1000 });
+            res.status(200).json({ status: 'success', token });
         }
         else {
-            res.send({ message: "Wrong username/password combination" })
+            res.status(401).json({ status: 'fail' });
+            // res.json({ status: 'fail' });
         }
     })
 
+
 })
+app.use(isValidAuth);
 
-_router.get('/getAllRisk', async (_request, _response) => {
 
-    //console.log('callling...');
-    let result = await AllRisk();
+app.get('/demo', (req, res) => {
 
-    _response.status(200)
-        .send({ data: result });
-});
-
-app.post('/getSingleDepartment', (req, res) => {
-    const deptId = req.body.deptId;
-    db.query("SELECT dept_name, threshold from department where dept_id = ?;", deptId, (err, result) => {
-        if (err) {
-            res.send(err);
+    client.query("SELECT * FROM admin ", (error, results) => {
+        if (error) {
+            throw error
         }
-        else {
-            res.send(result);
-        }
+        var user = results.rows
+        console.log(user)
+
     })
+
+    res.status(200).json({ status: 'ookkk' });
+
+
 })
 
-app.get('/getRecords', (req, res) => {
-    db.query("SELECT employee.emp_id, emp_name, DATE(start_date) as start_date, DATE(end_date) as end_date from employee, leaves where employee.emp_id = leaves.emp_id;", (err, result) => {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send(result)
-        }
-    })
-})
-
-app.get('/getDepartments', (req, res) => {
-    db.query("SELECT dept_id, dept_name FROM department;", (err, result) => {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send(result)
-        }
-    })
-})
-
-app.post('/getEmployeeData', (req, res) => {
-    const deptId = req.body.deptId;
-    db.query("SELECT employee.emp_id,emp_name FROM emp_dept,employee where dept_id=? and emp_dept.emp_id = employee.emp_id;", deptId, (err, result) => {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send(result)
-        }
-    })
-})
 
 app.listen(3001, () => {
     console.log("Server started running!")

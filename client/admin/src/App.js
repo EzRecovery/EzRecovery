@@ -12,6 +12,7 @@ const App = () => {
   return (
     <div >
 
+      {/* <Login></Login> */}
       <Router>
         <Switch>
           <Route path='/app' component={Dashboard} />
