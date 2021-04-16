@@ -10,7 +10,7 @@ import Sidebar from "../dashboard/sidebar/Sidebar";
 import DashboardPage from "../pages/DashboardPage";
 import ImportPage from "../pages/ImportPage";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const [sidebarOpen, setsidebarOpen] = useState(false);
     const openSidebar = () => {
         setsidebarOpen(true);
@@ -26,7 +26,7 @@ const Dashboard = () => {
                     <Route exact path='/app/dashboard' component={DashboardPage} />
                     <Route exact path='/app/import' component={ImportPage} />
                 </Switch>
-                <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+                <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} setUsername={props.username} />
             </div>
         </Router>
     );

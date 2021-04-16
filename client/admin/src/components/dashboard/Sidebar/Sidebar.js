@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Link } from "react-router-dom";
 
 
-const Sidebar = ({ sidebarOpen, closeSidebar }) => {
+const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
 
   const changeSubState = () => {
     if (sub) {
@@ -16,6 +16,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
   }
 
   const [sub, setSub] = useState(false)
+  const [username, setUsername] = useState(props.setUsername)
 
   return (
     <div className={sidebarOpen ? "sidebar_responsive" : ""} id="sidebar">
@@ -77,7 +78,8 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
         </div>
         <div className="sidebar__logout">
           <i className="fa fa-power-off"></i>
-          <a href="#">Log out</a>
+          <button onClick={() => { localStorage.clear(); window.location.reload(false); }} />
+
         </div>
       </div>
 
@@ -86,3 +88,4 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
 };
 
 export default Sidebar;
+
