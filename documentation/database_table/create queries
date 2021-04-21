@@ -50,3 +50,24 @@ foreign key(Field_Staff_id) references Field_Staff(id)
 ON DELETE CASCADE 
 ON UPDATE SET NULL
 );
+
+
+//new table for allocation , it is many to many table !!
+ezrecovery=# create table allocation(allocation_date date,field_staff_id integer not null,borrower_id integer not null, foreign key(field_staff_id) references Field_staff(id),foreign key(borrower_id) references borrower(id));
+CREATE TABLE
+
+
+
+
+//some insert queries
+
+ezrecovery=# insert into field_staff(id,name,username,password,contact_no,contact_no_1,email,profile_photo) values(101,'pushkar','pushkar','pushkar','1234567890','1234567890','pushkr@gmail.com','profile.png');
+INSERT 0 1
+ezrecovery=# insert into field_staff(id,name,username,password,contact_no,contact_no_1,email,profile_photo) values(201,'ishwar','ishwar','ishwar','1234567890','1234567890','ishwar@gmail.com','profile.png');
+INSERT 0 1
+ezrecovery=# insert into field_staff(id,name,username,password,contact_no,contact_no_1,email,profile_photo) values(301,'amita','amita','amita','1234567890','1234567890','amita@gmail.com','profile.png');
+INSERT 0 1
+ezrecovery=# insert into leave(start_date,end_date,field_staff_id) values('25-04-2021','25-04-2021',101);
+INSERT 0 1
+ezrecovery=# insert into leave(start_date,end_date,field_staff_id) values('25-04-2021','25-04-2021',201);
+INSERT 0 1
