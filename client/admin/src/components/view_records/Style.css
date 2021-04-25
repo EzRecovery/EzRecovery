@@ -1,0 +1,95 @@
+.view_record_wrapper{
+    
+  margin-top:4%;
+  position:absolute;
+
+  width: 1000px;
+  /* text-align: center; */
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-left: 10.5%;
+  right:0.5%
+}
+#text_align{
+    text-align: center;
+    
+}
+h1{
+    /* margin-top: 2%; */
+}
+.Row {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Column {
+    display: table-cell;
+    /* width: 200px; */
+    /* height: 20px; */
+    background-color: rgb(243, 197, 197); /*Optional*/
+}
+
+/* -----------------------  for table*/
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    width: 1000px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr:hover {
+    font-weight: bold;
+   background-color: #009879;
+    
+}
+
+
+/* -------------------------- for search bar*/
+
+.Search {
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+  }.SearchSpan {
+    width: 10%;
+    height: 30px;
+    border: 1px solid #1C76D2;
+    background: #1C76D2;
+    padding-top: 4px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px 0 0 5px;
+    font-size: 20px;
+  }.SearchInput {
+    width: 85%;
+    border: 3px solid #1C76D2;
+    border-left: none;
+    padding: 5px;
+    border-radius: 0 5px 5px 0;
+    outline: none;
+  }

@@ -1,0 +1,104 @@
+.Ticket_wrapper{
+    
+    margin-top:6%;
+    margin-left: 20%;
+    position:absolute;
+    width: 800px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 10.5%;
+    right:0.5%
+  }
+  .psize{
+      font-size: 30px;
+      margin-left: 20%;
+
+  }
+  .borrower_container{
+    margin-left: 20%;
+  }
+  .borrowerdetails{
+      margin: 3%;
+  }
+  hr.HR{
+      margin-top: -40px;
+  }
+  .ticketdropdown{
+      margin-top: 25.7%;
+      margin-right: 12%;
+    float: right;
+
+  }
+  #one{
+      margin: 1%;
+  }
+
+  .ticketbutton{
+      /* background-color; */
+      width: 200px;
+      margin-top:6%;
+    margin-left: 25%;
+      
+  }
+.resonsive-ticketdropdown{
+    display: none;
+}
+  @media only screen and (max-width: 768px) {
+
+    .Ticket_wrapper{
+    
+        /* background-color: rgb(238, 130, 130); */
+        margin-top:10%;
+        /* margin-left: 200%; */
+        position:absolute;
+        /* width: 300px; */
+        width: 80%;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        padding-left: 10.5%;
+        right:0.5%
+      }
+      .psize{
+          font-size: 20px;
+          margin: 10%;
+          padding-left: 10%;
+          /* float:right; */
+      }
+
+      .borrower_container{
+          /* margin-top: -30px; */
+          margin-left: 1%;
+      }
+      .borrowerdetails{
+          margin: 6%;
+      }
+      hr.HR{
+          /* margin-top: -40px; */
+          display: none;
+          
+      }
+      .ticketdropdown{
+          /* margin-top: 0%;
+          /* margin-right: 12%; */
+          /* margin-left: 60%;
+        float: right;  */
+        display: none;
+    
+      }
+      .resonsive-ticketdropdown{
+          
+          display: inline;
+          margin-left: 7%;
+      }
+      .special_note{
+        margin-left: 7%;
+      }
+      
+    
+      .ticketbutton{
+          
+          width: 100px;
+          margin-top:8%;
+        margin-left: 16%;
+          
+      }
+
+  }

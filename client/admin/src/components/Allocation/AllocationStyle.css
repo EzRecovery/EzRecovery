@@ -1,0 +1,85 @@
+.Allocation_wrapper{
+    margin-top:4%;
+    position:absolute;
+    width: 1000px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 10.5%;
+    right:0.5%
+  }
+  #text_align{
+      margin-top: 1%;
+      text-align: center;
+  }
+
+  /*--------------table style ---------------*/
+
+  .AvailableEmployee{
+      margin-top: 10%;
+      margin-right: 6%;
+      float: right;
+      
+
+  }
+  .leftSide{
+      float: left;
+      margin-left: 6%;
+      margin-top: 7%;
+      width: 600px;
+  }
+
+  .headingElement{
+      margin: 20px 5px;
+  }
+  #textAndLabel{
+    display:flex; flex-direction: row;
+    /* justify-content: center; align-items: center; */
+  }
+  #allocationLabel{
+      width: 300px;
+  }
+  input.allocationInput {
+	background-color: #eee;
+	border: none;
+	/* padding: 12px 10px; */
+	/* margin: 8px 0; */
+	width: 30%;
+}
+
+/* -----------table style------------------*/
+  .styled-table1 {
+    
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 200px;
+    text-align: center;
+    /* width: 1000px; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table1 thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table1 th,
+.styled-table1 td {
+    padding: 12px 15px;
+}
+.styled-table1 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table1 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table1 tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table1 tbody tr:hover {
+    font-weight: bold;
+   background-color: #009879;
+    
+}

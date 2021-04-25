@@ -23,7 +23,7 @@ const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
       <div className="sidebar__title">
         <div className="sidebar__img">
           <img src={logo} alt="logo" />
-          <h1>Codersbite</h1>
+          <h1>EzRecovery</h1>
         </div>
         <i
           onClick={() => closeSidebar()}
@@ -38,24 +38,24 @@ const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
           <i className="fa fa-home"></i>
           <Link to='/app/dashboard'>Dashboard</Link>
         </div>
-        <h2>ADMIN</h2>
+        <h2>Field-Staff</h2>
         <div className="sidebar__link">
           <i className="fa fa-user-secret" aria-hidden="true"></i>
-          <Link to="/app/import">Import Records</Link>
+          <Link to="/app/myallocation">My Allocations</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-building-o"></i>
-          <Link to="/app/view">View Records</Link>
+          <Link to="/app/leaves">Leaves</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-wrench"></i>
-          <Link to="/app/manage">Manage Field-Staff</Link>
+          <Link to="/app/location">Location Preference</Link>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-archive"></i>
-          <Link to="/app/allocation">Allocate Field-Staff</Link>
+          <Link to="/app/report">Reports</Link>
         </div>
-        <div className="sidebar__link">
+        {/* <div className="sidebar__link">
           <i className="fa fa-handshake-o"></i>
           <Link to="/app/monitor">Monitor Field-Staff</Link>
         </div>
@@ -75,7 +75,7 @@ const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
         <div className="sidebar__link">
           <i className="fa fa-money"></i>
           <Link to="/app/export">Export</Link><br /><br />
-        </div>
+        </div> */}
         <div className="sidebar__logout">
           <i className="fa fa-power-off"></i>
           <button className="logoutbutton" onClick={() => { localStorage.clear(); window.location.reload(false); }} >logout</button>
