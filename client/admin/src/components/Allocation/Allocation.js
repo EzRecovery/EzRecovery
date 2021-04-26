@@ -43,17 +43,30 @@ export default class Allocation extends Component {
     }
 
     async handleSubmit(event) {
-        // event.preventDefault();
+
 
         try {
-            const res = await Axios.post(
-                'http://localhost:3001/xyz',
-                {
-                    // method: "POST",
-                    data: { perFieldStaff: this.state.perFieldStaff, availableEmp: this.state.availableEmp },
-                }
-            );
-            alert(res.status)
+            if (this.state.perFieldStaff === "")
+                alert("please enter number first");
+            else if (isNaN(this.state.perFieldStaff)) {
+
+                alert("please enter valid number");
+            }
+            else if (this.state.remainingRecords < (this.state.perFieldStaff * this.state.availableEmp.length)) {
+                console.log("ff")
+                alert("sorry, please enter lesser value !! ");
+
+            }
+            else {
+                const res = await Axios.post(
+                    'http://localhost:3001/xyz',
+                    {
+                        // method: "POST",
+                        data: { perFieldStaff: this.state.perFieldStaff, availableEmp: this.state.availableEmp },
+                    }
+                );
+                alert("Allocation Successfull !!")
+            }
 
         } catch (err) { }
 
